@@ -14,7 +14,7 @@ module.exports = function load(config) {
     port : config.redis.port
   });
   const subClient = pubClient.duplicate();
-  io.adapter(redisAdapter(pubClient, subClient));
+  io.adapter(redis(pubClient, subClient));
 
   if (config.origins) {
     io.set('origins', (Object.prototype.toString.call(config.origins) === '[object Array]' ? config.origins.join(',') : config.origins));
