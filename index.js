@@ -1,7 +1,6 @@
 'use strict';
 
 let io     = require('socket.io')();
-let log    = require('./lib/log');
 let auth   = require('./lib/services/auth');
 let Client = require('./lib/services/client');
 
@@ -34,5 +33,5 @@ module.exports = function load(config) {
   // ### Listen
 
   io.listen(config.port);
-  log.server(`Server listening on port ${ config.port }`);
+  console.log(`Server listening on port ${ config.port }`);
 }
