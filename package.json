@@ -32,10 +32,8 @@
     "async": "1.5.0",
     "co": "4.6.0",
     "co-request": "1.0.0",
-    "debug": "2.2.0",
-    "moment": "2.10.6",
-    "socket.io": "1.4.4",
-    "socket.io-redis": "1.0.0"
+    "socket.io": "4.2.0",
+    "@socket.io/redis-adapter": "7.0.0"
   },
   "gitHead": "fc1cc2ebba7c586b88dba688d08995ce5c372890",
   "homepage": "https://github.com/bentojs/socket-core#readme",
