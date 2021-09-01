@@ -3,18 +3,18 @@
 let io     = require('socket.io')();
 let auth   = require('./lib/services/auth');
 let Client = require('./lib/services/client');
+let redis  = require('@socket.io/redis-adapter');
+const { createClient } = require('redis');
 
 module.exports = function load(config) {
   auth.setup(config);
 
-
-  if (config.redis) {
-    let redis = require('@socket.io/redis-adapter');
-    io.adapter(redis({
-      host : config.redis.host,
-      port : config.redis.port
-    }));
-  }
+  let pubClient = createClient({
+    host : config.redis.host,
+    port : config.redis.port
+  });
+  const subClient = pubClient.duplicate();
+  io.adapter(redisAdapter(pubClient, subClient));
 
   if (config.origins) {
     io.set('origins', (Object.prototype.toString.call(config.origins) === '[object Array]' ? config.origins.join(',') : config.origins));
